@@ -1,0 +1,48 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+model User {
+  id                Int             @id @default(autoincrement())
+  telegramId        String          @unique
+  telegramUsername  String
+  createdAt         DateTime        @default(now())
+  isActive          Boolean         @default(true)
+  gameProfile       GameProfile?
+
+  @@index([telegramId])
+}
+
+model GameProfile {
+  id              Int              @id @default(autoincrement())
+  userId          Int              @unique
+  user            User             @relation(fields: [userId], references: [id])
+  currentLevelId  Int?
+  currentLevel    Level?           @relation("LevelGameProfiles", fields: [currentLevelId], references: [id])
+  points          Int              @default(0)
+  minerId         Int?
+  miner           Miner?           @relation("MinerGameProfiles", fields: [minerId], references: [id])
+
+  @@index([userId])
+}
+
+model Level {
+  id              Int              @id @default(autoincrement())
+  name            String
+  pointsRequired  Int              @default(0)
+  features        String
+  gameProfiles    GameProfile[]    @relation("LevelGameProfiles")
+  miners          Miner[]          @relation("LevelMiners", fields: [id], references: [unlockedAtId])
+}
+
+model Miner {
+  id              Int              @id @default(autoincrement())
+  name            String
+  unlockedAtId    Int
+  unlockedAt      Level            @relation("LevelMiners", fields: [unlockedAtId], references: [id])
+  gameProfiles    GameProfile[]    @relation("MinerGameProfiles")
+}

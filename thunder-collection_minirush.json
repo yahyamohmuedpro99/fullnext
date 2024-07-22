@@ -1,0 +1,23 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "minirush",
+    "collectionId": "f8ce7236-5a7b-4fa2-a321-30d1fbd0b79e",
+    "dateExported": "2024-07-21T21:49:21.273Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "6e70bda3-60d3-45b5-b543-a5b6f5c276cb",
+            "colId": "f8ce7236-5a7b-4fa2-a321-30d1fbd0b79e",
+            "containerId": "",
+            "name": "test",
+            "url": "http://localhost:3000/api/test/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-07-21T21:48:19.080Z",
+            "modified": "2024-07-21T21:48:26.005Z",
+            "headers": []
+        }
+    ],
+    "ref": "Y2zDGkPw88CdGJpm9TsZdMNupR1fyYy_b2GtisHM3oAVwF8eWeBPQesJD5jnC-2yWAPtsVLnMm-e_2b7IOA-Uw"
+}
